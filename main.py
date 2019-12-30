@@ -44,7 +44,8 @@ def restore():
         del all_wifi["version_wifi_exporter"]
     for filename,content in all_wifi.items():
         my_dump = open(wifi_folder+filename,"w")
-        os.chown(wifi_folder+filename, 0, 0)# set root right
+        os.chown(wifi_folder+filename, 0, 0)# set root own
+        os.chmod(wifi_folder+filename, stat.S_IXUSR ) 
         os.chmod(wifi_folder+filename, stat.S_IREAD) 
         my_dump.write(content)
     fenetre.label.sv.set("done :)   please reboot ! ")

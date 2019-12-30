@@ -1,0 +1,35 @@
+ dpkg-buildpackage -rfakeroot -us -uc -ui -S
+dpkg-buildpackage: info: source package wifi-password-exporter
+dpkg-buildpackage: info: source version 1.0
+dpkg-buildpackage: info: source distribution bionic
+dpkg-buildpackage: info: source changed by Thibault Daccord <thibd@protonmail.com>
+ dpkg-source --before-build wifi-exporter
+ fakeroot debian/rules clean
+ dpkg-source -b wifi-exporter
+dpkg-source: warning: no source format specified in debian/source/format, see dpkg-source(1)
+dpkg-source: warning: source directory 'wifi-exporter' is not <sourcepackage>-<upstreamversion> 'wifi-password-exporter-1.0'
+dpkg-source: info: using source format '1.0'
+dpkg-source: info: building wifi-password-exporter in wifi-password-exporter_1.0.tar.gz
+dpkg-source: info: building wifi-password-exporter in wifi-password-exporter_1.0.dsc
+ dpkg-genbuildinfo --build=source
+ dpkg-genchanges --build=source >../wifi-password-exporter_1.0_source.changes
+dpkg-genchanges: info: including full source code in upload
+ dpkg-source --after-build wifi-exporter
+dpkg-buildpackage: info: source-only upload: Debian-native package
+Now running lintian wifi-password-exporter_1.0_source.changes ...
+W: wifi-password-exporter source: diff-contains-git-control-dir .git
+W: wifi-password-exporter source: missing-debian-source-format
+E: wifi-password-exporter source: debian-rules-not-a-makefile
+E: wifi-password-exporter source: debian-rules-missing-required-target build
+E: wifi-password-exporter source: debian-rules-missing-required-target binary
+E: wifi-password-exporter source: debian-rules-missing-required-target binary-arch
+E: wifi-password-exporter source: debian-rules-missing-required-target binary-indep
+E: wifi-password-exporter source: debian-rules-missing-required-target clean
+W: wifi-password-exporter source: debian-rules-missing-recommended-target build-arch
+W: wifi-password-exporter source: debian-rules-missing-recommended-target build-indep
+W: wifi-password-exporter source: no-debian-copyright
+W: wifi-password-exporter source: ancient-standards-version 3.5.6 (released 2001-07-25) (current is 4.1.4)
+Finished running lintian.
+Now signing changes and any dsc files...
+The .buildinfo file is already signed.
+Would you like to use the current signature? [Yn]
